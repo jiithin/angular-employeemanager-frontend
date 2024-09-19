@@ -1,3 +1,19 @@
+**Employee Manager - Angular**
+Live Preview - [Click Here](https://angular-employee-manager.vercel.app)
+
+<br/>
+<div align="center">
+  <img alt="Demo" src="src/assets/1.png" />
+  <img alt="Demo" src="src/assets/2.png" />
+  <img alt="Demo" src="src/assets/3.png" />
+ <img alt="Demo" src="src/assets/4.png" />
+
+</div>
+<br/>
+<br/>
+
+
+
 # EmployeePortal
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
