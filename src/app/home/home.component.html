@@ -1,0 +1,47 @@
+
+
+<div class="container-fluid " style="background-color: #f9fafd;">
+    <div class="row">
+      <div *ngIf="sidebarStatus" style="min-height: 92vh; width: fit content; background-color: #383657;" class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+        <a style="text-decoration: none; color: #b5b3eb;" class="fw-bolder mb-3 mt-4" routerLink="/dashboard"><i class="fa-solid fa-house me-2"></i> Home</a>
+        <a style="text-decoration: none; color: #b5b3eb;" class="fw-bolder mb-3" routerLink="/users"><i class="fa-solid fa-user-group me-2"></i> Users</a>
+        <button (click)="logout()" class="btn mt-auto fw-bolder" style="text-decoration: none; color: #dcc6eb;">
+          <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal me-1"></i> Logout
+        </button>
+      </div>
+
+      <div class="col-lg-10">
+        <h4 class="mt-4 ms-4 text-secondary ">Dashboard</h4>
+        
+        <div class="row p-3 w-100">
+          <div class="col-lg-8">
+            <div class="banner rounded p-5 shadow"
+              style="background-color: #48456d; height: 200px;">
+              <h1 class="fw-bolder mt-4 text-white" style="font-size: 35px;"><i (click)="menuBtnClicked()" style="cursor: pointer;" class="fa-solid fa-bars me-1"></i> Welcome {{adminName}}</h1>
+            </div>
+      
+            <div class="row mt-3 p-3 d-flex ">
+              <div class="col-6 border rounded shadow "  style="background-color: #48456d;">
+                <!-- calendar -->
+                <app-calendar></app-calendar>
+              </div>
+              <div class="col-6 border rounded shadow " style="background-color: #48456d;">
+                <!-- chart-->
+                <app-chart></app-chart>
+              </div>
+            </div>
+      
+            
+          </div>
+
+          <div class="col-lg-4">
+              <div style="height: 400px;" class="border shadow rounded edit-admin mb-4"> 
+                <app-update-admin (onAdminChange)="adminChange($event)"></app-update-admin>
+              </div>
+              <div class="banner rounded p-5 shadow" style="background-color: #48456d; height: 200px;">
+                <h1 class="fw-bolder" style="color: #ffffff;font-size: 35px;"><i class="fa-solid fa-users-viewfinder"></i> Total Employees:{{userCount}}</h1>
+              </div>
+            </div>
+            
+        </div>
+      </div>

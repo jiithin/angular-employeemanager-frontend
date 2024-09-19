@@ -1,0 +1,44 @@
+<div style="min-height: 90vh;background-color: #f9fafd;" class="d-flex justify-content-center align-items-center w-100">
+    <div class="w-50 border rounded p-5 card shadow">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="https://img.freepik.com/premium-vector/account-login-password-form-smartphone-app-user-authorization-login-authentication-page-sign-up-concept-3d-vector-icon-cartoon-minimal-style_365941-832.jpg?w=740"
+                    alt="" height="300px" width="300px" class="justify-content-center align-items-center">
+            </div>
+
+            <div class="col-lg-6">
+                <form #loginForm="ngForm" (ngSubmit)="login()">
+                    <div>
+                        <h1 style="color: rgb(120, 117, 231);font-weight: bolder;">LogIn Form</h1>
+
+
+                        <label for="email" class="form-label mt-2">Email</label>
+                        <input [(ngModel)]="email" type="email" name="email" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com"
+                            required email #UserInputEmail="ngModel" />
+
+                    </div>
+                    <!-- Invalid email -->
+                    <div *ngIf="UserInputEmail.invalid&&UserInputEmail.touched" class="text-danger fw-bolder">*invalid
+                        email</div>
+
+                    <div>
+                        <label for="exampleInputPassword1" class="form-label mt-3">Password</label>
+                        <input [(ngModel)]="password" type="password" name="password" class="form-control"
+                            id="exampleInputPassword1" placeholder="password..." autocomplete="off" required
+                            pattern="[0-9a-zA-Z]*" minlength="3" maxlength="32" #UserInputPswd="ngModel" />
+                    </div>
+                    <!-- Invalid password -->
+                    <div *ngIf="UserInputPswd.invalid&&UserInputPswd.touched" class="text-danger fw-bolder">*invalid
+                        password</div>
+
+                    <button [disabled]="loginForm.invalid&&loginForm.touched" name="button" type="submit"
+                        class="btn mt-4 w-100 text-white" style="background: #7875e7;">Login</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

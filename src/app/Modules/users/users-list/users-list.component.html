@@ -1,0 +1,75 @@
+
+
+<div class="container-fluid" style="background-color: #f9fafd;">
+    <div class="row">
+      <div style="min-height: 92vh; width: fit content; background-color: #383657;" class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+        <a style="text-decoration: none; color: #b5b3eb;" class="fw-bolder mb-3 mt-4" routerLink="/dashboard"><i class="fa-solid fa-house me-2"></i> Home</a>
+        <a style="text-decoration: none; color: #b5b3eb;" class="fw-bolder mb-3" routerLink="/users"><i class="fa-solid fa-user-group me-2"></i> Users</a>
+        <button class="btn mt-auto  fw-bolder" style="text-decoration: none; color: #dcc6eb;">
+          <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal me-2" ></i> Logout
+        </button>
+      </div>
+      <div class="col-lg-10">
+        
+            <div class="d-flex justify-content-between mt-4 ms-3">
+                <h3>All Users List</h3>
+                <a class="btn text-white d-frid mt-2 shadow" style="background-color: #7875e7;" routerLink="/users/add"><i class="fa-regular fa-address-card"></i> Add Users</a>
+            </div>
+             
+
+            <div class="row mb-2 mt-3">
+            <div class=" col-lg-4 input-group w-25">
+              <input [(ngModel)]="searchKey" type="text" class="form-control shadow" placeholder="Search by Username" aria-label="Recipient's username" aria-describedby="button-addon2">
+              
+              </div>
+
+              <div class="col-lg-2">
+                <button class="btn btn-outline dropdown-toggle w-100 shadow" style="color: #6e6bd4;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >Sort</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
+                <li><button (click)="sortById()" class="dropdown-item">Sort By Id</button></li>
+                <li><button (click)="sortByName()" class="dropdown-item">Sort By Username</button></li>
+              </ul>
+                </div>
+
+                <div class="col-lg-2">
+                  <button (click)="generatePDF()" class="btn btn-outline shadow" style="color: #6e6bd4;" type="button" >Export</button>
+                </div>
+              
+              
+            </div>
+
+        <!-- table -->
+    <table class="table shadow mt-5 p-4">
+        <thead >
+           <tr >
+           <th style="background-color: #48456d;" class="text-white">#</th>
+           <th style="background-color: #48456d;" class="text-white">ID</th>
+           <th style="background-color: #48456d;" class="text-white">Name</th>
+           <th style="background-color: #48456d;" class="text-white">Email</th>
+           <th style="background-color: #48456d;" class="text-white">Status</th>
+           <th style="background-color: #48456d;" class="text-white">Action</th>    
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let user of allusers|search:searchKey| paginate: { itemsPerPage: 5, currentPage: p }; 
+           let i=index;"[hidden]="!user.empId">
+               <td>{{i}}</td>
+               <td>{{user.empId}}</td>
+               <td>{{user.name}}</td>
+               <td>{{user.email}}</td>
+               <td><span [ngClass]="user.status=='1'?'link link-success fw-bolder':'link link-danger fw-bolder'">{{user.status=='1'? 'Active':'Inactive'}}</span></td>
+               <td><a style="text-decoration: none; color: #7875e7;" class="fw-bolder p-2" routerLink="/users/edit/{{user.id}}"><i class="fa-solid fa-pen"></i></a>
+               <button (click)="deleteUser(user.id)" class="btn" style="text-decoration: none; color: #e77575;"><i class="fa-solid fa-trash"></i></button></td>
+           </tr>
+           <tr *ngIf="(allusers|search:searchKey).length==0"><p class="text-danger fw-bolder text-center">User Not Found.</p></tr>
+        </tbody>
+       </table>
+       
+       <div class="d-flex justify-content-center mt-5 ">
+        <pagination-controls (pageChange)="p = $event" style="color: #7875e7;"></pagination-controls>
+       </div>
+       
+      </div>
+    </div>
+  </div>
+  
