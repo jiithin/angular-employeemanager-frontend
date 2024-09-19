@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AdminService {
 
 
-  SERVER_URL:string="http://localhost:3000"
+  SERVER_URL:string="https://angular-employee-server-utu4.onrender.com"
   constructor(private http:HttpClient) { }
 
 
